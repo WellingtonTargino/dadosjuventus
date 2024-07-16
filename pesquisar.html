@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisar Jovem</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>DADOS JUVENTUDE</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Lembretes</a></li>
+            <li><a href="adicionar.html">Adicionar Jovem</a></li>
+            <li><a href="pesquisar.html">Pesquisar Jovem</a></li>
+            <li><a href="anotacoes.html">Anotações Gerais</a></li>
+            <li><a href="anotacoes_especificas.html">Anotações Específicas</a></li>
+            <li><a href="gerenciar.html">Gerenciar Jovens</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>Pesquisar por Filtro</h2>
+            <form id="filtroForm">
+                <label for="filtroCampo">Campo:</label>
+                <select id="filtroCampo" name="filtroCampo" required>
+                    <option value="nomeCompleto">Nome Completo</option>
+                    <option value="dataNascimento">Data de Nascimento</option>
+                    <option value="telefone">Telefone</option>
+                    <option value="nomeMae">Nome da Mãe</option>
+                    <option value="telefoneMae">Telefone da Mãe</option>
+                    <option value="nomePai">Nome do Pai</option>
+                    <option value="telefonePai">Telefone do Pai</option>
+                    <option value="departamentos">Departamentos</option>
+                    <option value="habilidades">Habilidades</option>
+                    <option value="alergias">Alergias</option>
+                    <option value="deficiencias">Deficiências</option>
+                    <option value="gostoMusical">Gosto Musical</option>
+                    <option value="tempoConosco">Tempo que está conosco</option>
+                    <option value="sedeOuCongregacao">Sede ou Congregação</option>
+                    <option value="convertido">Convertido</option>
+                    <option value="batizado">Batizado</option>
+                    <option value="genero">Gênero</option>
+                    <option value="paisIgreja">Pais na Igreja</option>
+                </select>
+                <br>
+                <label for="filtroValor">Pesquisa:</label>
+                <input type="text" id="filtroValor" name="filtroValor" required>
+                <br>
+                <button type="submit">Pesquisar</button>
+            </form>
+        </section>
+        <section id="resultados">
+            <h2>Resultados da Pesquisa</h2>
+            <div id="resultadosLista"></div>
+        </section>
+    </main>
+    <script src="js/pesquisar.js"></script>
+</body>
+</html>

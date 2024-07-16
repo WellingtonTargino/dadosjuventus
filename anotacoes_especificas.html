@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anotações Específicas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>DADOS JUVENTUDE</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Lembretes</a></li>
+            <li><a href="adicionar.html">Adicionar Jovem</a></li>
+            <li><a href="pesquisar.html">Pesquisar Jovem</a></li>
+            <li><a href="anotacoes.html">Anotações Gerais</a></li>
+            <li><a href="anotacoes_especificas.html">Anotações Específicas</a></li>
+            <li><a href="gerenciar.html">Gerenciar Jovens</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>Anotações Específicas</h2>
+        <form id="anotacaoEspecificaForm">
+            <label for="nomeAluno">Nome do Jovem:</label>
+            <select id="nomeAluno" name="nomeAluno" required>
+                <!-- Opções adicionadas dinamicamente -->
+            </select>
+            <label for="anotacaoEspecifica">Nova Anotação:</label>
+            <textarea id="anotacaoEspecifica" name="anotacaoEspecifica" required></textarea>
+            <button type="submit">Adicionar</button>
+        </form>
+        <div id="listaAnotacoesEspecificas"></div>
+    </section>
+</main>
+    <script src="js/anotacoes_especificas.js"></script>
+</body>
+</html>
