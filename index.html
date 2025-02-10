@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz com Temporizador</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #0b1442, #1b39c5);
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 80%;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    .question {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .options {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+    .option {
+        margin: 0 10px 10px 0;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .option:hover {
+        background-color: #45a049;
+    }
+    #timer {
+        font-size: 18px;
+        margin-top: 20px;
+        text-align: center;
+        color: #333;
+    }
+    #countdown {
+        color: #ff0000;
+    }
+
+    @media screen and (max-width: 600px) {
+        .container {
+            max-width: 90%;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Bora Brincar!</h1>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div id="timer">Tempo restante: <span id="countdown"></span></div>
+</div>
+
+<script>
+    const questions = [
+        {
+            question: "O que significa a palavra Evangelho?",
+            options: ["Carta", "Boa Noticia", "Livro", "Mateus"],
+            answer: "Boa Noticia"
+        },
+        {
+            question: "Quantos Evangelhos temos na Biblia?",
+            options: ["4", "2", "66", "Apenas 1"],
+            answer: "4"
+        },
+        {
+            question: "Qual discipulo quis mostrar Jesus como o Messias esperado?",
+            options: ["Mateus", "Marcos", "Lucas", "João"],
+            answer: "Mateus"
+        },
+        {
+            question: "Qual discipulo quis mostrar Jesus como o Homem perfeito?",
+            options: ["Mateus", "Marcos", "Lucas", "João"],
+            answer: "Lucas"
+        },
+        {
+            question: "Qual discipulo quis mostrar Jesus como servo?",
+            options: ["Mateus", "Marcos", "Lucas", "João"],
+            answer: "Marcos"
+        },
+        {
+            question: "Qual discipulo quis mostrar Jesus como o filho de Deus?",
+            options: ["Mateus", "Marcos", "Lucas", "João"],
+            answer: "João"
+        },
+        {
+            question: "Qual dos 4 escritores era mas proximo de Jesus?",
+            options: ["Mateus", "Marcos", "Lucas", "João"],
+            answer: "João"
+        },
+        {
+            question: "Qual dos 4 escritores escreveu a familia de Jesus desde Adão?",
+            options: ["Mateus", "Marcos", "Lucas", "João"],
+            answer: "Lucas"
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let chances = 3;
+    let countdown;
+
+    function startTimer(seconds) {
+        let timer = seconds;
+        countdown = setInterval(function() {
+            timer--;
+            document.getElementById("countdown").innerText = timer + "s";
+            if (timer === 0) {
+                clearInterval(countdown);
+                displayNextQuestion();
+            }
+        }, 1000);
+    }
+
+    function displayQuestion() {
+        document.getElementById("question").innerText = questions[currentQuestion].question;
+        const optionsContainer = document.getElementById("options");
+        optionsContainer.innerHTML = "";
+        questions[currentQuestion].options.forEach(option => {
+            const button = document.createElement("button");
+            button.textContent = option;
+            button.classList.add("option");
+            button.onclick = function() {
+                checkAnswer(option);
+            };
+            optionsContainer.appendChild(button);
+        });
+        startTimer(60); // Defina a duração do temporizador em segundos
+    }
+
+    function displayNextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            displayQuestion();
+        } else {
+            endQuiz();
+        }
+    }
+
+    function checkAnswer(selectedOption) {
+        clearInterval(countdown);
+        if (selectedOption === questions[currentQuestion].answer) {
+            score++;
+            displayNextQuestion();
+        } else {
+            chances--;
+            if (chances === 0) {
+                endQuiz();
+            } else {
+                alert("Resposta incorreta! Você tem mais " + chances + " tentativas.");
+                displayNextQuestion();
+            }
+        }
+    }
+
+    function endQuiz() {
+        alert("Quiz concluído! Sua pontuação é: " + score);
+        // Você pode adicionar mais ações aqui, como reiniciar o quiz.
+    }
+
+    displayQuestion();
+</script>
+
+</body>
+</html>
